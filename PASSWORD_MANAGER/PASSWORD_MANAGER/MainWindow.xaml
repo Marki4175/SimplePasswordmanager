@@ -1,0 +1,54 @@
+﻿<Window x:Class="WpfApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Account Manager by Markus Kaduk" Height="450" Width="600">
+        <!--Closing="Window_Closing"-->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="5">
+            <CheckBox x:Name="chkGmail" Content="Gmail:" VerticalAlignment="Center" Checked="ChkField_Checked" Unchecked="ChkField_Unchecked"/>
+            <TextBox x:Name="txtGmail" Width="200" VerticalAlignment="Center" IsEnabled="False"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="5">
+            <CheckBox x:Name="chkUsername" Content="Username:" VerticalAlignment="Center" Checked="ChkField_Checked" Unchecked="ChkField_Unchecked"/>
+            <TextBox x:Name="txtUsername" Width="200" VerticalAlignment="Center" IsEnabled="False"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="5">
+            <CheckBox x:Name="chkPassword" Content="Password:" VerticalAlignment="Center" Checked="ChkField_Checked" Unchecked="ChkField_Unchecked"/>
+            <PasswordBox x:Name="txtPassword" Width="200" VerticalAlignment="Center" IsEnabled="False"/>
+        </StackPanel>
+
+        <Grid Grid.Row="3" Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <ListView Grid.Row="0" x:Name="accountListView" Margin="0" ItemsSource="{Binding Accounts}" SelectedItem="{Binding SelectedAccount}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Gmail" DisplayMemberBinding="{Binding Gmail}"/>
+                        <GridViewColumn Header="Username" DisplayMemberBinding="{Binding Username}"/>
+                        <GridViewColumn Header="Password" DisplayMemberBinding="{Binding Password}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <Button x:Name="btnAddAccount" Content="Add Account" Width="100" Margin="0,0,5,0" Click="AddAccount_Click"/>
+                <Button x:Name="btnRemoveAccount" Content="Remove" Width="100" Margin="0,0,5,0" Click="RemoveAccount_Click"/>
+                <Button x:Name="btnImport" Content="Import" Width="100" Margin="0,0,5,0" Click="Import_Click"/>
+                <Button x:Name="btnExport" Content="Export" Width="100" Click="Export_Click"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
